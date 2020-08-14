@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "477994636921",
+    "firebase_url": "https://savinganimals-d8648.firebaseio.com",
+    "project_id": "savinganimals-d8648",
+    "storage_bucket": "savinganimals-d8648.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477994636921:android:792245c2acc79a53f266a8",
+        "android_client_info": {
+          "package_name": "com.example.carouserl_inicio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477994636921-0k8j3v6d9d4adi8qg3eqcib8brtomqh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdFEbPnUOcqOpVI7os5GZGjVo6WTbqHZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477994636921-0k8j3v6d9d4adi8qg3eqcib8brtomqh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
