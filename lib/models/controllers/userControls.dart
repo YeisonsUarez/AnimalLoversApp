@@ -38,8 +38,7 @@ class UserControls {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: this._user.email, password: this._user.pass);
-      Navigator.pushReplacement(
-          _context, MaterialPageRoute(builder: (context) => LoginPage()));
+    
     } catch (e) {
       print(e.toString());
     }

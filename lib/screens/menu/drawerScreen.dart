@@ -17,12 +17,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
         children: [
           Row(
             children: [
-              CircleAvatar(),
+              ClipOval(
+                child: Image.network(
+                  "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63",
+                  fit: BoxFit.cover,
+                  width: 50.0,
+                  height: 50.0,
+                )
+              ),
               SizedBox(width: 10,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Miroslava Savitskaya',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                  Text('Lisseth Andrea',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                   Text('Active Status',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
                 ],
               )

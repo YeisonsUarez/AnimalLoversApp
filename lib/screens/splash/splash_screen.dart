@@ -1,10 +1,11 @@
+import 'package:carouserl_inicio/settings/size_config.dart';
 import 'package:flutter/material.dart';
-import '../../size_config.dart';
+
 import 'components/body.dart';
 
 
 class SplashScreen extends StatelessWidget {
-  static String routeName = "/spllash";
+  static String routeName = "/splash";
   @override
   Widget build(BuildContext context) {
     // You have to call it on your starting screen

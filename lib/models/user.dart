@@ -8,14 +8,30 @@ class User {
       _longitude,
       _dob,
       _gender;
-  bool _isEmailvalidated;
-  
+  bool _isEmailvalidated, _isSponsor;
 
-  User(this._name, this._email, this._phone, this._pass, this._dob,
-      this._gender, this._isEmailvalidated);
+  User(
+      {String name,
+      String email,
+      String phone,
+      String pass,
+      String dob,
+      String gender,
+      bool isSponsor=false})
+      : this._name = name,
+        this._email = email,
+        this._phone = phone,
+        this._pass = pass,
+        this._dob = dob,
+        this._gender = gender,
+        this._isSponsor = isSponsor;
   //setter
   set name(String name) {
     this._name = name;
+  }
+
+  set isSponsor(bool isSponsor) {
+    this._isSponsor = isSponsor;
   }
 
   set email(String email) {
@@ -65,4 +81,5 @@ class User {
   String get dob => this._dob;
   String get latitude => this._latitude;
   String get longitude => this._longitude;
+  bool get isSponsor => this._isSponsor;
 }

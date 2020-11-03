@@ -6,6 +6,7 @@ import 'homeScreen.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key key, this.user}) : super(key: key);
+  static final String routeName = "/home";
   final FirebaseUser user;
   @override
   Widget build(BuildContext context) {

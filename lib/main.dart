@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'routs.dart';
+import 'settings/constants.dart';
+
 import 'screens/splash/splash_screen.dart';
+import 'settings/routs.dart';
 
 void main() {
   runApp(MyApp());

@@ -2,8 +2,8 @@ import 'package:carouserl_inicio/screens/autentication/autentication.dart';
 import 'package:flutter/material.dart';
 
 // This is the best practice
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import '../../../settings/constants.dart';
+import '../../../settings/size_config.dart';
 import '../components/splash_content.dart';
 import '../../../components/default_button.dart';
 
@@ -16,13 +16,13 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": " Bienvenido a Saving Animals \n Ayudanos a salvar a los animales del mundo.",
+      "text":
+          " Bienvenido a Saving Animals \n Ayudanos a salvar a los animales del mundo.",
       "image": "assets/images/splash_1.gif"
     },
     {
-      "text":
-          " Salva a animales perdidos \n Ayuda a darles una mejor vida",
-      "image": "assets/images/splash_2.gif"
+      "text": " Te ayudaremos a encontrar\n tu mascota ideal",
+      "image": "assets/images/splash_3.png"
     },
     {
       "text": " Encuentra a tu nuevo compañero de vida \n ¡Adopta ya!",
@@ -46,7 +46,6 @@ class _BodyState extends State<Body> {
                 },
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
-                  
                   image: splashData[index]["image"],
                   text: splashData[index]['text'],
                 ),
@@ -71,8 +70,8 @@ class _BodyState extends State<Body> {
                     DefaultButton(
                       text: "Continuar",
                       press: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Autentication()));
-
+                        Navigator.of(context).pushReplacementNamed(Autentication.routeName);
+                        
                       },
                     ),
                     Spacer(),
