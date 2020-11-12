@@ -1,3 +1,4 @@
+
 import 'package:carouserl_inicio/screens/autentication/login.dart';
 import 'package:carouserl_inicio/screens/menu/menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,13 +22,8 @@ class UserControls {
               .signInWithEmailAndPassword(
                   email: this._user.email, password: this._user.pass))
           .user;
-      Navigator.of(_context).pop();
-      Navigator.pushReplacement(
-          this._context,
-          MaterialPageRoute(
-              builder: (context) => Menu(
-                    user: userFirebase,
-                  )));
+     // Navigator.of(_context).pop();
+      Navigator.pushReplacementNamed(_context,Menu.routeName);
     } catch (e) {
       print("error en Login");
     }

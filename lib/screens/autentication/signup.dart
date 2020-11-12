@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
 import 'package:carouserl_inicio/models/controllers/userControls.dart';
 import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/screens/autentication/autentication.dart';
 import 'package:carouserl_inicio/screens/autentication/login.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-
+import 'dart:async';
 import '../../settings/constants.dart';
 
 class SignupPage extends StatefulWidget {
@@ -16,20 +19,9 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SignupPageStateful(),
-    );
-  }
-}
-
-class SignupPageStateful extends StatefulWidget {
-  _SignupState createState() => _SignupState();
-}
-
-class _SignupState extends State<SignupPageStateful> {
+  
+  File _image;
+ 
   TextEditingController name = TextEditingController();
 
   TextEditingController email = TextEditingController();
@@ -104,6 +96,39 @@ class _SignupState extends State<SignupPageStateful> {
                           style:
                               TextStyle(fontSize: 15, color: Colors.grey[700]),
                         )),
+                    FadeAnimation(
+                        1.25,
+                        GestureDetector(
+                          onTap: () {
+                            _showPicker(context);
+                          },
+                          child: CircleAvatar(
+                            radius: 55,
+                            backgroundColor: Color(0xffFDCF09),
+                            child: _image != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.file(
+                                      _image,
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  )
+                                : Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                    width: 100,
+                                    height: 100,
+                                    child: Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.grey[800],
+                                    ),
+                                  ),
+                          ),
+                        ))
                   ],
                 ),
                 Form(
@@ -182,19 +207,9 @@ class _SignupState extends State<SignupPageStateful> {
                     ],
                   ),
                 ),
-                FadeAnimation(
-                    1.6,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Already have an account?"),
-                        Text(
-                          " Login",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
-                        ),
-                      ],
-                    )),
+                SizedBox(
+                  height: 50.0,
+                )
               ],
             ),
           ),
@@ -303,5 +318,54 @@ class _SignupState extends State<SignupPageStateful> {
             arguments: {"User": user});
       }
     }
+  }
+
+  _imgFromCamera() async {
+    //File image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 50);
+     PickedFile pickedFile = await ImagePicker().getImage(
+      source: ImageSource.camera,
+    );
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+  }
+
+  _imgFromGallery() async {
+    PickedFile pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      _image = File(pickedFile.path);
+    });
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

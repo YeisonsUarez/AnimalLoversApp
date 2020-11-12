@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../settings/constants.dart';
 import '../../../settings/size_config.dart';
 import '../components/splash_content.dart';
-import '../../../components/default_button.dart';
+import '../../../components/default_button_widget.dart';
 
 class Body extends StatefulWidget {
   @override

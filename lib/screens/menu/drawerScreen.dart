@@ -1,3 +1,4 @@
+import 'package:carouserl_inicio/components/items_menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'configuration.dart';
 
@@ -10,65 +11,132 @@ class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryGreen,
-      padding: EdgeInsets.only(top:50,bottom: 70,left: 10),
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 50, bottom: 70, left: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               ClipOval(
-                child: Image.network(
-                  "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63",
-                  fit: BoxFit.cover,
-                  width: 50.0,
-                  height: 50.0,
-                )
+                  child: Image.network(
+                "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63",
+                fit: BoxFit.cover,
+                width: 50.0,
+                height: 50.0,
+              )),
+              SizedBox(
+                width: 10,
               ),
-              SizedBox(width: 10,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Lisseth Andrea',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                  Text('Active Status',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))
+                  Text(
+                    'Lisseth Andrea',
+                    style: TextStyle(
+                        color: primaryGreen, fontWeight: FontWeight.bold),
+                  ),
+                  Text('Active Status',
+                      style: TextStyle(
+                          color: primaryGreen, fontWeight: FontWeight.bold))
                 ],
               )
             ],
           ),
-
           Column(
-            children: drawerItems.map((element) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  element['icon'],
-                  SizedBox(width: 10,),
-                  Text(element['title'],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20))
-                ],
-
-              ),
-            )).toList(),
+            children: _pintarElementos(),
           ),
-
           Row(
             children: [
-              Icon(Icons.settings,color: Colors.white,),
-              SizedBox(width: 10,),
-              Text('Settings',style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-              SizedBox(width: 10,),
-              Container(width: 2,height: 20,color: Colors.white,),
-              SizedBox(width: 10,),
-              Text('Log out',style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)
-
-
+              GestureDetector(
+                onTap: () {
+                  print("Configuración");
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.settings,
+                      color: primaryGreen,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Configuración',
+                      style: TextStyle(
+                          color: primaryGreen, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                width: 2,
+                height: 20,
+                color: primaryGreen,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("Cerrar sesión");
+                },
+                child: Text(
+                  'Cerrar sesión',
+                  style: TextStyle(
+                      color: primaryGreen, fontWeight: FontWeight.bold),
+                ),
+              )
             ],
-
           )
-
-
         ],
       ),
-
     );
+  }
+
+  List<Widget> _pintarElementos() {
+    List<Widget> elementos = [];
+    elementos.add(ItemMenu(
+      icon: Icons.person,
+      texto: "Perfil",
+      routeName: "/Perfil",
+    ));
+    elementos.add(SizedBox(
+      height: 20.0,
+    ));
+    elementos.add(ItemMenu(
+      icon: Icons.message,
+      texto: "Foro",
+      routeName: "/Foro",
+    ));
+    elementos.add(SizedBox(
+      height: 20.0,
+    ));
+    elementos.add(ItemMenu(
+      icon: Icons.people,
+      texto: "Ayudar",
+      routeName: "/Ayudar",
+    ));
+    elementos.add(SizedBox(
+      height: 20.0,
+    ));
+    elementos.add(ItemMenu(
+      icon: Icons.live_help,
+      texto: "Encontrar\nAyuda",
+      routeName: "/Ayuda",
+    ));
+    elementos.add(SizedBox(
+      height: 20.0,
+    ));
+    elementos.add(ItemMenu(
+      icon: Icons.pets,
+      texto: "Padrino",
+      routeName: "/Padrino",
+    ));
+
+    return elementos;
   }
 }

@@ -3,7 +3,7 @@ import 'settings/constants.dart';
 
 import 'screens/splash/splash_screen.dart';
 import 'settings/routs.dart';
-
+   
 void main() {
   runApp(MyApp());
 }
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Saving Animals',
+      title: 'AnimalsLovers',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         fontFamily: "Muli",

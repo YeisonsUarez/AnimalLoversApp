@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'configuration.dart';
 
-class Screen2 extends StatefulWidget {
+class AnimalDetail extends StatefulWidget {
   static final String routeName = "/details";
 
   @override
-  _Screen2State createState() => _Screen2State();
+  _AnimalDetailState createState() => _AnimalDetailState();
 }
 
-class _Screen2State extends State<Screen2> {
+class _AnimalDetailState extends State<AnimalDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

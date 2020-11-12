@@ -8,10 +8,10 @@ List<BoxShadow> shadowList = [
 ];
 
 List<Animal> animals = [
-  Animal(urlImage: "https://cadenaser00.epimg.net/ser/imagenes/2017/07/21/sociedad/1500634153_335112_1500635729_noticia_normal.jpg", name: "Pelusa", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
-  Animal(urlImage: "https://cadenaser00.epimg.net/ser/imagenes/2017/07/21/sociedad/1500634153_335112_1500635729_noticia_normal.jpg", name: "Pelusa", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
-  Animal(urlImage: "https://cadenaser00.epimg.net/ser/imagenes/2017/07/21/sociedad/1500634153_335112_1500635729_noticia_normal.jpg", name: "Pelusa", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
-  Animal(urlImage: "https://cadenaser00.epimg.net/ser/imagenes/2017/07/21/sociedad/1500634153_335112_1500635729_noticia_normal.jpg", name: "Pelusa", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true)
+  Animal(id:"0", urlImage: "https://cadenaser00.epimg.net/ser/imagenes/2017/07/21/sociedad/1500634153_335112_1500635729_noticia_normal.jpg", name: "Pelusa", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
+  Animal(id:"1",urlImage: "https://www.efeverde.com/storage/2018/02/Felinos-gato-fotolarena-551x310.jpg", name: "Salem", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
+  Animal(id:"2",urlImage: "https://www.fundacion-affinity.org/sites/default/files/que-hacer-si-encuentras-a-un-perro-perdido-o-abandonado.jpg", name: "Pelusa2", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true),
+  Animal(id:"3",urlImage: "https://i.ytimg.com/vi/eofgDuuS63g/maxresdefault.jpg", name: "Pelusa3", gender: "Macho", age: "2 meses", breed: "Criollo", illnesses:"", city: "Bucaramanga", hasACard: true)
 ];
 
 List<Map> categories = [
@@ -20,47 +20,4 @@ List<Map> categories = [
   {'name': 'Bunnies', 'iconPath': 'assets/images/rabbit.png'},
   {'name': 'Parrots', 'iconPath': 'assets/images/parrot.png'},
   {'name': 'Horses', 'iconPath': 'assets/images/horse.png'}
-];
-
-List<Map> drawerItems = [
-  {
-    'icon': Icon(
-      Icons.person,
-      color: Colors.white,
-      size: 30,
-    ),
-    'title': 'Perfil'
-  },
-  {
-    'icon': Icon(
-      Icons.message,
-      color: Colors.white,
-      size: 30,
-    ),
-    'title': 'Foro'
-  },
-  {
-    'icon': Icon(
-      Icons.people,
-      color: Colors.white,
-      size: 30,
-    ),
-    'title': 'Ayudar'
-  },
-  {
-    'icon': Icon(
-      Icons.live_help,
-      color: Colors.white,
-      size: 30,
-    ),
-    'title': 'Ayuda'
-  },
-  {
-    'icon': Icon(
-      Icons.pets,
-      color: Colors.white,
-      size: 30,
-    ),
-    'title': 'Padrino'
-  },
 ];

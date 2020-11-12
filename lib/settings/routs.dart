@@ -4,7 +4,7 @@ import 'package:carouserl_inicio/screens/autentication/autentication.dart';
 import 'package:carouserl_inicio/screens/autentication/login.dart';
 import 'package:carouserl_inicio/screens/autentication/signup.dart';
 import 'package:carouserl_inicio/screens/menu/menu.dart';
-import 'package:carouserl_inicio/screens/menu/screen2.dart';
+import 'package:carouserl_inicio/screens/menu/animalDetail.dart';
 import 'package:carouserl_inicio/screens/splash/splash_screen.dart';
 import 'package:flutter/widgets.dart';
 
@@ -17,6 +17,6 @@ final Map<String, WidgetBuilder> routes = {
   LoginPage.routeName:(context)=> LoginPage(),
   SignupPage.routeName:(context)=> SignupPage(),
   Menu.routeName: (context)=> Menu(),
-  Screen2.routeName:(context)=> Screen2()
+  AnimalDetail.routeName:(context)=> AnimalDetail()
 
 };
