@@ -1,6 +1,6 @@
 import 'package:carouserl_inicio/models/animal.dart';
-import 'package:carouserl_inicio/screens/menu/configuration.dart';
-import 'package:carouserl_inicio/screens/menu/animalDetail.dart';
+import 'package:carouserl_inicio/screens/home/animalDetailScreen.dart';
+import 'package:carouserl_inicio/screens/home/configuration.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class ItemAnimal extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         print(animal.name);
-        //Navigator.pushNamed(context, Screen2.routeName);
+        Navigator.pushNamed(context, AnimalDetail.routeName, arguments: animal);
       },
       child: Container(
         height: 240,

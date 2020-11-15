@@ -1,4 +1,5 @@
-import 'package:carouserl_inicio/screens/autentication/autentication.dart';
+import 'package:carouserl_inicio/animation/FadeAnimation.dart';
+import 'package:carouserl_inicio/screens/autentication/autenticationScreen.dart';
 import 'package:flutter/material.dart';
 
 // This is the best practice
@@ -17,7 +18,7 @@ class _BodyState extends State<Body> {
   List<Map<String, String>> splashData = [
     {
       "text":
-          " Bienvenido a Saving Animals \n Ayudanos a salvar a los animales del mundo.",
+          " Bienvenido a AnimalsLovers \n Ayudanos a salvar a los animales del mundo.",
       "image": "assets/images/splash_1.gif"
     },
     {
@@ -38,16 +39,17 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             Expanded(
               flex: 3,
-              child: PageView.builder(
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
-                itemCount: splashData.length,
-                itemBuilder: (context, index) => SplashContent(
-                  image: splashData[index]["image"],
-                  text: splashData[index]['text'],
+              child: FadeAnimation(1,PageView.builder(
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentPage = value;
+                    });
+                  },
+                  itemCount: splashData.length,
+                  itemBuilder: (context, index) => SplashContent(
+                    image: splashData[index]["image"],
+                    text: splashData[index]['text'],
+                  ),
                 ),
               ),
             ),
@@ -67,13 +69,13 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     Spacer(flex: 3),
-                    DefaultButton(
+                    FadeAnimation(0.9,DefaultButton(
                       text: "Continuar",
                       press: () {
                         Navigator.of(context).pushReplacementNamed(Autentication.routeName);
                         
                       },
-                    ),
+                    )),
                     Spacer(),
                   ],
                 ),

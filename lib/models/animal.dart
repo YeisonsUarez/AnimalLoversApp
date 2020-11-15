@@ -1,7 +1,7 @@
 import 'package:carouserl_inicio/models/user.dart';
 
 class Animal {
-  String _id, _urlImage, _name, _gender, _breed, _age, _illnesses, _city;
+  String _id, _urlImage, _name, _gender, _breed, _age, _illnesses, _city, _type;
   bool _hasACard;
   User _user;
 
@@ -14,6 +14,7 @@ class Animal {
       String age,
       String illnesses,
       String city,
+      String type,
       bool hasACard,
       User user})
       : this._id = id,
@@ -24,6 +25,7 @@ class Animal {
         this._age = age,
         this._illnesses = illnesses,
         this._city = city,
+        this._type = type,
         this._hasACard = hasACard,
         this._user = user;
 
@@ -67,6 +69,10 @@ class Animal {
     this._user = user;
   }
 
+  set type(String type) {
+    this._type = type;
+  }
+
   //getter
   String get urlImage => this._urlImage;
   String get name => this._name;
@@ -78,4 +84,5 @@ class Animal {
   bool get hasACard => this._hasACard;
   String get id => this._id;
   User get user => this._user;
+  String get type => this._type;
 }

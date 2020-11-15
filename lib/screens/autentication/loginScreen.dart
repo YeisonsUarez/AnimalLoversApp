@@ -1,6 +1,8 @@
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
 import 'package:carouserl_inicio/models/user.dart';
-import 'package:carouserl_inicio/screens/menu/menu.dart';
+import 'package:carouserl_inicio/screens/autentication/signupScreen.dart';
+import 'package:carouserl_inicio/screens/home/menu.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../settings/constants.dart';
@@ -38,8 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Builder(
-        builder: (context)=>
-           Container(
+        builder: (context) => Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
           child: Column(
@@ -114,27 +115,19 @@ class _LoginPageState extends State<LoginPage> {
                                       textEmail.text.trim() ==
                                               "lhernandez428@unab.edu.co" &&
                                           textPass.text.trim() == "qwerty") {
-                                            final snackBar = SnackBar(
-                                        content: Text('Bienvenido'),
-                                        action: SnackBarAction(
-                                          label: 'Ocultar',
-                                          onPressed: () {
-                                            // Some code to undo the change.
-                                          },
-                                        ));
-                                        Scaffold.of(context).showSnackBar(snackBar);
-                                    Navigator.of(context).pushReplacementNamed(Menu.routeName);
+                                    Navigator.of(context)
+                                        .pushReplacementNamed(Menu.routeName);
                                   } else {
                                     final snackBar = SnackBar(
-                                        content: Text('Datos incorrectos, intenta de nuevo'),
+                                        content: Text(
+                                            'Datos incorrectos, intenta de nuevo'),
                                         action: SnackBarAction(
                                           label: 'Ocultar',
                                           onPressed: () {
                                             // Some code to undo the change.
                                           },
                                         ));
-                                        Scaffold.of(context).showSnackBar(snackBar);
-
+                                    Scaffold.of(context).showSnackBar(snackBar);
                                   }
                                 },
                                 color: kPrimaryColor,
@@ -142,25 +135,33 @@ class _LoginPageState extends State<LoginPage> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Text(
-                                  "Login",
+                                  "Iniciar sesión",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w600, fontSize: 18),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18),
                                 ),
                               ),
                             ),
                           )),
                       FadeAnimation(
                           1.5,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("Don't have an account?"),
-                              Text(
-                                "Sign up",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 18),
-                              ),
-                            ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, SignupPage.routeName);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text("¿No tienes cuenta?"),
+                                Text(
+                                  "¡Registrate!",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18),
+                                ),
+                              ],
+                            ),
                           ))
                     ],
                   ),

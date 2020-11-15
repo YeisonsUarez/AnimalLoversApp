@@ -1,3 +1,4 @@
+import 'package:carouserl_inicio/animation/FadeAnimation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../settings/constants.dart';
@@ -16,12 +17,13 @@ class SplashContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Spacer(),
-        Text(
-          "Saving Animals",
-          style: TextStyle(
-            fontSize: getProportionateScreenWidth(36),
-            color: kPrimaryColor,
-            fontWeight: FontWeight.bold,
+        FadeAnimation(1, Text(
+            "AnimalsLovers",
+            style: TextStyle(
+              fontSize: getProportionateScreenWidth(36),
+              color: kPrimaryColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         Text(

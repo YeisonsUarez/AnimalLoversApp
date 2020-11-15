@@ -1,52 +1,35 @@
 import 'dart:io';
 
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
-import 'package:carouserl_inicio/models/controllers/userControls.dart';
-import 'package:carouserl_inicio/models/user.dart';
-import 'package:carouserl_inicio/screens/autentication/autentication.dart';
-import 'package:carouserl_inicio/screens/autentication/login.dart';
+import 'package:carouserl_inicio/screens/home/menu.dart';
+import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'dart:async';
-import '../../settings/constants.dart';
 
-class SignupPage extends StatefulWidget {
-  static final String routeName = "/signup";
+import 'configuration.dart';
+
+class AddAnimal extends StatefulWidget {
+  static final String routeName = "/addAnimal";
 
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _AddAnimalState createState() => _AddAnimalState();
 }
 
-class _SignupPageState extends State<SignupPage> {
-  
+class _AddAnimalState extends State<AddAnimal> {
   File _image;
- 
+  String selectedUser;
+  String selectedType;
+  bool isSelectedCheckBox = false;
+
   TextEditingController name = TextEditingController();
 
-  TextEditingController email = TextEditingController();
+  TextEditingController breed = TextEditingController();
 
-  TextEditingController pass = TextEditingController();
-  TextEditingController confirmPass = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController illnesses = TextEditingController();
 
-  TextEditingController phone = TextEditingController();
-
-  TextEditingController gender = TextEditingController();
-
-  TextEditingController dob = TextEditingController();
-  DateTime selectedDate = DateTime.now().toLocal();
+  TextEditingController city = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(1950, 1),
-        lastDate: selectedDate);
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +42,7 @@ class _SignupPageState extends State<SignupPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(Autentication.routeName);
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -82,9 +65,10 @@ class _SignupPageState extends State<SignupPage> {
                     FadeAnimation(
                         1,
                         Text(
-                          "Registrarse",
+                          "Registrar un animalito",
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         )),
                     SizedBox(
                       height: 20,
@@ -92,42 +76,50 @@ class _SignupPageState extends State<SignupPage> {
                     FadeAnimation(
                         1.2,
                         Text(
-                          "Crea una cuenta, es gratis",
+                          "Por favor llena todos los campos para dar una mejor información a las personas que deseen adoptar",
                           style:
                               TextStyle(fontSize: 15, color: Colors.grey[700]),
+                          textAlign: TextAlign.center,
                         )),
+                    SizedBox(height: 20.0),
                     FadeAnimation(
                         1.25,
                         GestureDetector(
                           onTap: () {
                             _showPicker(context);
                           },
-                          child: CircleAvatar(
-                            radius: 55,
-                            backgroundColor: Color(0xffFDCF09),
-                            child: _image != null
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.file(
-                                      _image,
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey[200],
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
+                          child: _image != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.file(
+                                    _image,
                                     width: 100,
                                     height: 100,
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.grey[800],
-                                    ),
+                                    fit: BoxFit.fill,
                                   ),
-                          ),
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      width: 100,
+                                      height: 100,
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.grey[800],
+                                      ),
+                                    ),
+                                    Text(
+                                      "Añade una foto de perfil dando clic sobre la imagen de cámara.",
+                                      style: TextStyle(color: kPrimaryColor),
+                                      textAlign: TextAlign.center,
+                                    )
+                                  ],
+                                ),
                         ))
                   ],
                 ),
@@ -144,38 +136,95 @@ class _SignupPageState extends State<SignupPage> {
                       FadeAnimation(
                           1.4,
                           makeInput(
-                              icon: Icon(Icons.email),
-                              label: "Email",
-                              controller: email)),
+                              icon: Icon(Icons.pets),
+                              label: "Raza",
+                              controller: breed)),
                       FadeAnimation(
                           1.6,
                           makeInput(
-                              icon: Icon(Icons.phone),
-                              label: "Numero de contacto",
-                              controller: phone)),
+                              icon: Icon(Icons.calendar_today),
+                              label: "Edad aproximada",
+                              controller: age)),
                       FadeAnimation(
                           1.2,
                           makeInput(
                               icon: Icon(Icons.star),
-                              label: "Sexo",
-                              controller: gender)),
+                              label:
+                                  "Por favor indicanos que enfermedades tiene",
+                              controller: illnesses)),
                       FadeAnimation(
                           1.8,
                           makeInput(
-                              icon: Icon(Icons.security),
-                              label: "Password",
-                              obscureText: true,
-                              controller: pass)),
+                              icon: Icon(Icons.location_city),
+                              label: "Ciudad donde se encuentra",
+                              controller: city)),
                       FadeAnimation(
                           1.10,
-                          makeInput(
-                              icon: Icon(Icons.security),
-                              label: "Confirm password",
-                              obscureText: true,
-                              controller: confirmPass)),
+                          DropdownButton<String>(
+                            hint: Text("Selecciona el sexo"),
+                            value: selectedUser,
+                            onChanged: (String value) {
+                              setState(() {
+                                selectedUser = value;
+                              });
+                            },
+                            items: genderList.map((String item) {
+                              return DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Row(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        item,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ],
+                                  ));
+                            }).toList(),
+                          )),
                       FadeAnimation(
-                        1.5,
-                        makeInputDoB(label: "Fecha de nacimiento"),
+                          1.11,
+                          DropdownButton<String>(
+                            hint: Text("Selecciona el tipo de animalito"),
+                            value: selectedType,
+                            onChanged: (String value) {
+                              setState(() {
+                                selectedType = value;
+                              });
+                            },
+                            items: typesAnimals.map((String item) {
+                              return DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Row(
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        item,
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ],
+                                  ));
+                            }).toList(),
+                          )),
+                      FadeAnimation(
+                        1.4,
+                        CheckboxListTile(
+                          secondary: const Icon(Icons.pets),
+                          title: const Text('¿Tiene carnet de vacunas?'),
+                          value: isSelectedCheckBox,
+                          onChanged: (bool value) {
+                            setState(() {
+                              isSelectedCheckBox = value;
+                            });
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
                       ),
                       FadeAnimation(
                           1.5,
@@ -198,7 +247,7 @@ class _SignupPageState extends State<SignupPage> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               child: Text(
-                                "Sign up",
+                                "Registrar animalito",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 18),
                               ),
@@ -260,69 +309,16 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  Widget makeInputDoB({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: kPrimaryColor,
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        InkWell(
-          onTap: () => _selectDate(context),
-          child: InputDecorator(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.date_range),
-              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey[400])),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey[400])),
-            ),
-            child: Text(
-              DateFormat.yMMMMEEEEd().format(selectedDate),
-              style: TextStyle(fontSize: 20.0, color: kPrimaryColor),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-      ],
-    );
-  }
-
   void register() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      if (pass.text != confirmPass.text) {
-        print("contraseña mala");
-      } else {
-        User user = User(
-            name: name.text,
-            email: email.text,
-            pass: pass.text,
-            phone: phone.text,
-            gender: gender.text);
-        user.dob = DateFormat.yMMMMEEEEd().format(selectedDate);
-        UserControls controls = new UserControls(user: user, context: context);
-        await controls.registerUser();
-        Navigator.pushNamed(context, LoginPage.routeName,
-            arguments: {"User": user});
-      }
+      Navigator.pop(context);
     }
   }
 
   _imgFromCamera() async {
     //File image = await ImagePicker.pickImage(source: ImageSource.camera, imageQuality: 50);
-     PickedFile pickedFile = await ImagePicker().getImage(
+    PickedFile pickedFile = await ImagePicker().getImage(
       source: ImageSource.camera,
     );
     setState(() {

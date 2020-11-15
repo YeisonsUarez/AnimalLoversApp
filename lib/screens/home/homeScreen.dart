@@ -1,11 +1,12 @@
 import 'package:carouserl_inicio/components/item_animal_widget.dart';
 import 'package:carouserl_inicio/models/animal.dart';
+import 'package:carouserl_inicio/screens/home/addAnimalScreen.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:carouserl_inicio/settings/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'configuration.dart';
-import 'animalDetail.dart';
+import 'animalDetailScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Add your onPressed code here!
+            Navigator.pushNamed(context, AddAnimal.routeName);
           },
           child: Icon(
             Icons.pets,
@@ -55,23 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     isDrawerOpen
                         ? GestureDetector(
-                          onTap: (){
-                            setState(() {
+                            onTap: () {
+                              setState(() {
                                 xOffset = 0;
                                 yOffset = 0;
                                 scaleFactor = 1;
                                 isDrawerOpen = false;
                               });
-                          },
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios
-                              ),
-                              Text("volver")
-                            ],
-                          ),
-                        )
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.arrow_back_ios),
+                                Text("volver")
+                              ],
+                            ),
+                          )
                         : IconButton(
                             icon: Icon(Icons.menu),
                             onPressed: () {

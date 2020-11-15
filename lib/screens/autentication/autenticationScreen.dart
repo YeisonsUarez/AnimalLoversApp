@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../settings/constants.dart';
-import 'login.dart';
-import 'signup.dart';
+import 'loginScreen.dart';
+import 'signupScreen.dart';
 
 class Autentication extends StatelessWidget {
   static final String routeName = "/auth";

@@ -1,11 +1,10 @@
-import 'package:carouserl_inicio/screens/menu/configuration.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenu extends StatelessWidget {
   final IconData icon;
-  final String texto,routeName;
-  
+  final String texto, routeName;
+
   ItemMenu({this.icon, this.texto, this.routeName});
   @override
   Widget build(BuildContext context) {
@@ -14,6 +13,7 @@ class ItemMenu extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           print(routeName);
+          Navigator.pushNamed(context, routeName);
         },
         child: Row(
           children: [
