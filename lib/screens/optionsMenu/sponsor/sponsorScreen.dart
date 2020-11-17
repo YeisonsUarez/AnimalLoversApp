@@ -1,4 +1,5 @@
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
+import 'package:carouserl_inicio/screens/optionsMenu/sponsor/listUsersScreen.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:carouserl_inicio/settings/size_config.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,10 @@ class SponsorScreen extends StatelessWidget {
               1,
               Text(
                 "Ser padrino",
-                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue[900], fontSize: 30.0),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[900],
+                    fontSize: 30.0),
                 textAlign: TextAlign.center,
               )),
           SizedBox(height: 30.0),
@@ -39,13 +43,19 @@ class SponsorScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
-                  "Ser padrino en AnimalsLovers, significa ayudar a la crianza de loa animales apadrinados. Si aceptas ayudar ser padrino de uno o muchos animales, da clic en continuar.",
+                  "Ser padrino en AnimalsLovers, significa ayudar a la crianza de los animales apadrinados. Si aceptas ayudar ser padrino de uno o muchos animales, da clic en continuar.",
                   style: TextStyle(color: Colors.blue[900], fontSize: 20.0),
                   textAlign: TextAlign.center,
                 ),
               )),
           SizedBox(height: 30.0),
-          FadeAnimation(1.2,  Image.asset("assets/images/padrino.png", width: getProportionateScreenWidth(200.0),height: getProportionateScreenHeight(200.0),)),
+          FadeAnimation(
+              1.2,
+              Image.asset(
+                "assets/images/padrino.png",
+                width: getProportionateScreenWidth(200.0),
+                height: getProportionateScreenHeight(200.0),
+              )),
           FadeAnimation(
               1.2,
               Padding(
@@ -63,7 +73,10 @@ class SponsorScreen extends StatelessWidget {
                   child: MaterialButton(
                     minWidth: double.infinity,
                     height: 60,
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                      Navigator.pushNamed(context, ListUsersScreen.routeName);
+                    },
                     color: kPrimaryColor,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

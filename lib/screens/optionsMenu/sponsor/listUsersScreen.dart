@@ -1,15 +1,23 @@
+import 'dart:core';
+
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
 import 'package:carouserl_inicio/components/item_list_user_widget.dart';
+import 'package:carouserl_inicio/models/controllers/userControls.dart';
 import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/screens/home/configuration.dart';
 import 'package:carouserl_inicio/settings/size_config.dart';
 import 'package:flutter/material.dart';
 
-class HelpScreen extends StatelessWidget {
-  static String routeName = "/help";
+class ListUsersScreen extends StatefulWidget {
+  static final String routeName = "/listUsers";
+  @override
+  _ListUsersScreenState createState() => _ListUsersScreenState();
+}
+
+class _ListUsersScreenState extends State<ListUsersScreen> {
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         elevation: 0,
@@ -32,9 +40,9 @@ class HelpScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10.0, left: 10.0),
             child: Text(
-              "Los siguientes usuarios están\n dispuestos a ayudarte llevando animalitos a la veterinaria o paseándolos.\n No dudes en contactarlos.",
+              "Contacta al usuario que deseas apadrinar en la adopción y crecimiento de su mascota",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.blue[900], fontSize: 18.0),
+              style: TextStyle(color: Colors.blue[900], fontSize: 20.0),
             ),
           ),
           SizedBox(
@@ -44,7 +52,7 @@ class HelpScreen extends StatelessWidget {
             height: 50 * SizeConfig.heightMultiplier,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: _pintarItems(usersHelp),
+              children: _pintarItems(users),
             ),
           ),
           FadeAnimation(
@@ -53,8 +61,8 @@ class HelpScreen extends StatelessWidget {
                 height: getProportionateScreenHeight(150),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/walk.png'),
-                        fit: BoxFit.contain)),
+                        image: AssetImage('assets/images/background.png'),
+                        fit: BoxFit.cover)),
               ))
         ],
       ),
@@ -62,6 +70,8 @@ class HelpScreen extends StatelessWidget {
   }
 
   List<Widget> _pintarItems(List<User> users) {
+  
+
     List<Widget> widgets = [];
     users.forEach((element) {
       widgets.add(ItemListUser(

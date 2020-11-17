@@ -1,11 +1,13 @@
+import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenu extends StatelessWidget {
   final IconData icon;
   final String texto, routeName;
+  final User user;
 
-  ItemMenu({this.icon, this.texto, this.routeName});
+  ItemMenu({this.icon, this.texto, this.routeName, this.user});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,7 +15,7 @@ class ItemMenu extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           print(routeName);
-          Navigator.pushNamed(context, routeName);
+          Navigator.pushNamed(context, routeName, arguments: user);
         },
         child: Row(
           children: [

@@ -1,4 +1,6 @@
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
+import 'package:carouserl_inicio/models/controllers/userControls.dart';
+import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/screens/autentication/autenticationScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +41,9 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             Expanded(
               flex: 3,
-              child: FadeAnimation(1,PageView.builder(
+              child: FadeAnimation(
+                1,
+                PageView.builder(
                   onPageChanged: (value) {
                     setState(() {
                       currentPage = value;
@@ -69,13 +73,16 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     Spacer(flex: 3),
-                    FadeAnimation(0.9,DefaultButton(
-                      text: "Continuar",
-                      press: () {
-                        Navigator.of(context).pushReplacementNamed(Autentication.routeName);
-                        
-                      },
-                    )),
+                    FadeAnimation(
+                        0.9,
+                        DefaultButton(
+                          text: "Continuar",
+                          press: () {
+                    
+                            Navigator.of(context)
+                                .pushReplacementNamed(Autentication.routeName);
+                          },
+                        )),
                     Spacer(),
                   ],
                 ),

@@ -1,25 +1,30 @@
 import 'package:carouserl_inicio/components/item_animal_widget.dart';
 import 'package:carouserl_inicio/models/animal.dart';
+import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/screens/home/addAnimalScreen.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:carouserl_inicio/settings/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'configuration.dart';
-import 'animalDetailScreen.dart';
 
 class HomeScreen extends StatefulWidget {
+  final User user;
+  
+  const HomeScreen({Key key, this.user}) : super(key: key);
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState(user);
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
-
+  final User user;
   bool isDrawerOpen = false;
-  List<Animal> animales = [];
+
+  _HomeScreenState(this.user);
+  //List<Animal> animales = [];
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ClipOval(
                         child: Image.network(
-                      "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63",
+                      user.urlFoto,
                       fit: BoxFit.cover,
                       width: 50.0,
                       height: 50.0,

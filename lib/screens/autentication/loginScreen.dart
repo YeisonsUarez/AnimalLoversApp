@@ -1,4 +1,5 @@
 import 'package:carouserl_inicio/animation/FadeAnimation.dart';
+import 'package:carouserl_inicio/models/controllers/userControls.dart';
 import 'package:carouserl_inicio/models/user.dart';
 import 'package:carouserl_inicio/screens/autentication/signupScreen.dart';
 import 'package:carouserl_inicio/screens/home/menu.dart';
@@ -6,6 +7,8 @@ import 'package:carouserl_inicio/screens/home/menu.dart';
 import 'package:flutter/material.dart';
 
 import '../../settings/constants.dart';
+
+User user = User();
 
 class LoginPage extends StatefulWidget {
   static final String routeName = "/login";
@@ -110,17 +113,15 @@ class _LoginPageState extends State<LoginPage> {
                                 minWidth: double.infinity,
                                 height: 60,
                                 onPressed: () {
-                                  if (textEmail.text.trim() ==
-                                          "yhernandez557@unab.edu.co" ||
-                                      textEmail.text.trim() ==
-                                              "lhernandez428@unab.edu.co" &&
-                                          textPass.text.trim() == "qwerty") {
-                                    Navigator.of(context)
-                                        .pushReplacementNamed(Menu.routeName);
+                                  if (textEmail.text != "" &&
+                                      textPass.text != "") {
+                                    user.email = textEmail.text;
+                                    user.pass = textPass.text;
+                                    UserControls(context: context, user: user).loginUser();
                                   } else {
                                     final snackBar = SnackBar(
                                         content: Text(
-                                            'Datos incorrectos, intenta de nuevo'),
+                                            'Por favor llena todos los campos, intenta de nuevo'),
                                         action: SnackBarAction(
                                           label: 'Ocultar',
                                           onPressed: () {

@@ -4,11 +4,14 @@ import 'package:carouserl_inicio/screens/autentication/autenticationScreen.dart'
 import 'package:carouserl_inicio/screens/autentication/loginScreen.dart';
 import 'package:carouserl_inicio/screens/autentication/signupScreen.dart';
 import 'package:carouserl_inicio/screens/home/addAnimalScreen.dart';
+import 'package:carouserl_inicio/screens/home/adoptAnimalScreen.dart';
 import 'package:carouserl_inicio/screens/home/animalDetailScreen.dart';
 import 'package:carouserl_inicio/screens/home/menu.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/assist/assistScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/forum/chat_screen.dart';
+import 'package:carouserl_inicio/screens/optionsMenu/help/helpScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/profile/perfilScrenn.dart';
+import 'package:carouserl_inicio/screens/optionsMenu/sponsor/listUsersScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/sponsor/sponsorScreen.dart';
 import 'package:carouserl_inicio/screens/splash/splash_screen.dart';
 import 'package:flutter/widgets.dart';
@@ -30,6 +33,9 @@ final Map<String, WidgetBuilder> routes = {
   PerfilScreen.routeName:(context)=> PerfilScreen(),
   ChatScreen.routeName:(context)=>ChatScreen(),
   AssistScreen.routeName:(context)=> AssistScreen(),
-  SponsorScreen.routeName:(context)=>  SponsorScreen()
+  SponsorScreen.routeName:(context)=>  SponsorScreen(),
+  ListUsersScreen.routeName:(context)=> ListUsersScreen(),
+  HelpScreen.routeName:(context)=>HelpScreen(),
+  AdoptAnimalScreen.routeName:(context)=> AdoptAnimalScreen()
 
 };

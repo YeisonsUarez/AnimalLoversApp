@@ -18,7 +18,8 @@ class PerfilScreen extends StatefulWidget {
 class _PerfilScreenState extends State<PerfilScreen> {
   @override
   Widget build(BuildContext context) {
-    final User user = User(
+    final User user = ModalRoute.of(context).settings.arguments;
+    /*final User user = User(
         name: "Lisseth Andrea Hernández Flórez",
         email: "lhernandez428@unab.edu.co",
         phone: "312241555",
@@ -26,7 +27,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
         address: "Carrera 19 # 8 45, Bucaramanga",
         urlFoto:
             "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63");
-
+*/
     return LayoutBuilder(
       builder: (context, constraints) {
         return OrientationBuilder(

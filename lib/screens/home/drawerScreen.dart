@@ -1,17 +1,25 @@
 import 'package:carouserl_inicio/components/items_menu_widget.dart';
+import 'package:carouserl_inicio/models/user.dart';
+import 'package:carouserl_inicio/screens/autentication/loginScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/assist/assistScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/forum/chat_screen.dart';
+import 'package:carouserl_inicio/screens/optionsMenu/help/helpScreen.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/profile/perfilScrenn.dart';
 import 'package:carouserl_inicio/screens/optionsMenu/sponsor/sponsorScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'configuration.dart';
 
 class DrawerScreen extends StatefulWidget {
+  final User user;
+  const DrawerScreen({Key key, this.user}) : super(key: key);
   @override
-  _DrawerScreenState createState() => _DrawerScreenState();
+  _DrawerScreenState createState() => _DrawerScreenState(user);
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  final User user;
+  _DrawerScreenState(this.user);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +36,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               children: [
                 ClipOval(
                     child: Image.network(
-                  "https://scontent.fbga1-4.fna.fbcdn.net/v/t1.0-9/107255257_3057926057624057_8699687802890458276_o.jpg?_nc_cat=107&ccb=2&_nc_sid=84a396&_nc_ohc=a8Lkldkdp44AX8xetcM&_nc_ht=scontent.fbga1-4.fna&oh=9b0c282e1b0b24ab5aec52cec10489b3&oe=5FC8CB63",
+                  user.urlFoto,
                   fit: BoxFit.cover,
                   width: 50.0,
                   height: 50.0,
@@ -40,7 +48,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Lisseth Andrea',
+                      "${user.name.split(" ")[0]} ${user.name.split(" ")[1]}",
                       style: TextStyle(
                           color: primaryGreen, fontWeight: FontWeight.bold),
                     ),
@@ -57,27 +65,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
           ),
           Row(
             children: [
-              GestureDetector(
-                onTap: () {
-                  print("Configuración");
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: primaryGreen,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Configuración',
-                      style: TextStyle(
-                          color: primaryGreen, fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
+              
               SizedBox(
                 width: 10,
               ),
@@ -90,8 +78,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 width: 10,
               ),
               GestureDetector(
-                onTap: () {
-                  print("Cerrar sesión");
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacementNamed(context, LoginPage.routeName);
                 },
                 child: Text(
                   'Cerrar sesión',
@@ -112,16 +101,21 @@ class _DrawerScreenState extends State<DrawerScreen> {
       icon: Icons.person,
       texto: "Perfil",
       routeName: PerfilScreen.routeName,
+      user: user,
     ));
     elementos.add(SizedBox(
       height: 20.0,
     ));
     elementos.add(ItemMenu(
-        icon: Icons.message, texto: "Foro", routeName: ChatScreen.routeName));
+        user: user,
+        icon: Icons.message,
+        texto: "Foro",
+        routeName: ChatScreen.routeName));
     elementos.add(SizedBox(
       height: 20.0,
     ));
     elementos.add(ItemMenu(
+      user: user,
       icon: Icons.people,
       texto: "Ayudar",
       routeName: AssistScreen.routeName,
@@ -130,14 +124,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
       height: 20.0,
     ));
     elementos.add(ItemMenu(
+      user: user,
       icon: Icons.live_help,
       texto: "Encontrar\nAyuda",
-      routeName: "/Ayuda",
+      routeName: HelpScreen.routeName,
     ));
     elementos.add(SizedBox(
       height: 20.0,
     ));
     elementos.add(ItemMenu(
+      user: user,
       icon: Icons.pets,
       texto: "Padrino",
       routeName: SponsorScreen.routeName,

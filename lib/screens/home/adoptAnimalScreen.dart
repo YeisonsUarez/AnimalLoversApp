@@ -1,19 +1,20 @@
+import 'package:carouserl_inicio/models/animal.dart';
+import 'package:carouserl_inicio/screens/optionsMenu/forum/messages/chat_bubble.dart';
 import 'package:carouserl_inicio/settings/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'messages/chat_bubble.dart';
-
 FirebaseUser loggedInUser;
+String emailUserAnimal;
 
-class ChatScreen extends StatefulWidget {
-  static String routeName = "/chat";
+class AdoptAnimalScreen extends StatefulWidget {
+  static final String routeName = "/adopt";
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _AdoptAnimalScreenState createState() => _AdoptAnimalScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _AdoptAnimalScreenState extends State<AdoptAnimalScreen> {
   final _auth = FirebaseAuth.instance;
   final _fstore = Firestore.instance;
   final controller = new TextEditingController();
@@ -40,6 +41,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Animal animal = ModalRoute.of(context).settings.arguments;
+    emailUserAnimal = animal.user.email;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
@@ -52,7 +55,7 @@ class _ChatScreenState extends State<ChatScreen> {
           },
         ),
         title: Text(
-          "Chat grupal",
+          "Chat con el titular",
           textAlign: TextAlign.center,
         ),
       ),
@@ -62,8 +65,17 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Positioned(
+              left: 10,
+              top: 70,
+              right: 10,
+              bottom: 70,
+              child: Container(
+                color: Colors.blue,
+              ),
+            ),
             Expanded(
-              child: MessageStream(),
+              child: MessagePrivate(),
             ),
             Container(
               decoration: kMessageDecoration,
@@ -76,7 +88,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       controller: controller,
                       textCapitalization: TextCapitalization.sentences,
                       onChanged: (value) {
-                        
                         message = value;
                       },
                       decoration: kMessageTextFieldDecoration,
@@ -89,17 +100,18 @@ class _ChatScreenState extends State<ChatScreen> {
                     onPressed: () {
                       controller.clear();
                       FocusScope.of(context).unfocus();
-                      _fstore.collection('messages').add({
-                        'senderName': "Lisseth",
+                      _fstore
+                          .collection('messages' +
+                              animal.user.email +
+                              loggedInUser.email)
+                          .add({
+                        'senderName': loggedInUser.email,
                         'text': message,
                         'time': DateTime.now(),
                         'senderEmail': loggedInUser.email,
                       });
                     },
-                    child: Icon(
-                      Icons.send,
-                      color: kPrimaryColor
-                    ),
+                    child: Icon(Icons.send, color: kPrimaryColor),
                   ),
                 ],
               ),
@@ -111,13 +123,17 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 }
 
-class MessageStream extends StatelessWidget {
+class MessagePrivate extends StatelessWidget {
   final _fstore = Firestore.instance;
-
+  //String emailUserAnimal;
+  //MessagePrivate({this.emailUserAnimal})
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _fstore.collection('messages').orderBy('time').snapshots(),
+      stream: _fstore
+          .collection('messages$emailUserAnimal${loggedInUser.email}')
+          .orderBy('time')
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting ||
             !snapshot.hasData) {

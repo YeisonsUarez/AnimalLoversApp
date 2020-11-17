@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:json_annotation/json_annotation.dart';
 import 'package:path/path.dart';
 
+@JsonSerializable()
 class User {
-  String _name,
+  String _id,
+      _name,
       _email,
       _phone,
       _pass,
@@ -11,7 +16,7 @@ class User {
       _dob,
       _gender,
       _urlFoto;
-  bool _isEmailvalidated, _isSponsor, _isAssitant;
+  bool _isSponsor, _isAssitant;
 
   User(
       {String name,
@@ -34,6 +39,34 @@ class User {
         this._urlFoto = urlFoto,
         this._isSponsor = isSponsor,
         this._isAssitant = isAssitant;
+  Map<String, dynamic> toJson() => {
+        '_id': _id,
+        '_name': _name,
+        '_email': _email,
+        '_phone': _phone,
+        '_pass': _pass,
+        '_address': _address,
+        '_latitude': _latitude,
+        '_longitude': _longitude,
+        '_dob': _dob,
+        '_gender': _gender,
+        '_urlFoto': _urlFoto,
+        '_isSponsor': _isSponsor,
+        '_isAssitant': _isAssitant
+      };
+  User.fromJson(Map<String, dynamic> json)
+      : _id = json["_id"],
+        _name = json["_name"],
+        _email = json["_email"],
+        _phone = json["_phone"],
+        _address=json["_address"],
+        _isAssitant=json["_isAssitant"],
+        _isSponsor=json["_isSponsor"],
+        _dob=json["_dob"],
+        _urlFoto=json["_urlFoto"],
+        _gender= json["_gender"]
+        ;
+        
   //setter
   set name(String name) {
     this._name = name;
@@ -79,16 +112,14 @@ class User {
     this._gender = gender;
   }
 
-  set isEmailvalidated(bool isEmailvalidated) {
-    this._isEmailvalidated = isEmailvalidated;
-  }
-
   set isAssitant(bool isAssitant) {
     this._isAssitant = isAssitant;
   }
 
+  set id(String id) => _id = id;
+
   //getter
-  bool get isEmailvalidated => this._isEmailvalidated;
+  // bool get isEmailvalidated => this._isEmailvalidated;
   String get name => this._name;
   String get email => this._email;
   String get phone => this._phone;
@@ -101,4 +132,5 @@ class User {
   String get urlFoto => this._urlFoto;
   bool get isSponsor => this._isSponsor;
   bool get isAssistant => this._isAssitant;
+  String get id => this._id;
 }
