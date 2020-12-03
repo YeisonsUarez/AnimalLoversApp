@@ -131,7 +131,7 @@ class MessagePrivate extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: _fstore
-          .collection('messages$emailUserAnimal${loggedInUser.email}')
+          .collection('messages${loggedInUser.email}')
           .orderBy('time')
           .snapshots(),
       builder: (context, snapshot) {

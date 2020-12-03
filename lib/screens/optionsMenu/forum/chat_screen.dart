@@ -132,7 +132,7 @@ class MessageStream extends StatelessWidget {
             return ChatBubble(
               isMe: (messageStream[itemIndex]['senderEmail'] ==
                   loggedInUser.email),
-              senderName: loggedInUser.email,
+              senderName: messageStream[itemIndex]['senderEmail'],
               text: messageStream[itemIndex]['text'],
             );
           },
